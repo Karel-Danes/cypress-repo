@@ -1,5 +1,7 @@
 name: cypress-api
-on: [push]
+on: 
+  workflow_dispatch:
+  push:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest

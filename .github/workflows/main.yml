@@ -1,0 +1,10 @@
+name: cypress-api
+on: [push]
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checout@v2.3.4
+      - name: Cypress.io
+        uses: cypress-io/github-actions@v2.9.7  

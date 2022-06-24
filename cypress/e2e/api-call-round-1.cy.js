@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('try max from rquest',() => {
+describe('Testing API expected beavior',() => {
   it('step 1 (body lenght)', () => {
     cy
       .request({

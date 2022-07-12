@@ -19,7 +19,7 @@ describe('Testing API expected beavior',() => {
         url: Cypress.env('baseUrl')
       }).then((resp) => {
         console.table(resp.body)
-        expect(resp.status).to.eq(100)
+        expect(resp.status).to.eq(200)
       })
   })
 })

@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 const fixtures = require('../fixtures/fixtures')
+let responseBodyLength;
 
 describe('Testing API expected behavior', () => {
-  it('step 1 (body lenght)', () => {
+  it('step 1 (body length)', () => {
 
     cy.intercept('/login', (req) => {
       req.headers['x-custom-headers'] = 'added by expando'
@@ -37,7 +38,7 @@ describe('Testing API expected behavior', () => {
         console.table(resp.body)
         expect(resp.status).to.be.oneOf(fixtures.code.twoXX)
       })
-      
+
   })
   it('step 3 (query parameter behaviour)', () => {
     cy
@@ -67,10 +68,6 @@ describe('Testing API expected behavior', () => {
         //console.log(typeof (resp.headers))
         console.log(res.headers)
       })
-
-
-    // the application makes the call ...
-    // confirm the custom header was added
     /*
     cy.wait('@headers')
       .its('request.headers')
@@ -78,5 +75,56 @@ describe('Testing API expected behavior', () => {
 */
 
   })
+  it('step 5 (custom body pumping in)', () => {
+    cy
+      .request({
+        method: 'POST',
+        url: Cypress.env('baseUrl'),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: {
+          'newKey': 'newValue'
+        }
+      })
 
+    cy
+      .request({
+        method: 'GET',
+        url: Cypress.env('baseUrl'),
+      }).then((resp) => {
+        console.table(resp.body)
+      })
+  })
+
+
+  it('step 6 (custom body erasing)', () => {
+
+    cy
+    .request({
+      method: 'DELETE',
+      url: `https://boostbrothers-bikes-api.herokuapp.com/motorcycles/7`,
+    })
+
+/*
+    cy
+      .request({
+        method: 'GET',
+        url: Cypress.env('baseUrl'),
+      }).then((resp) => {
+        if (resp.body.length > 6) {
+          for (let i = 7; i < resp.body.length; i++) {
+
+
+            cy
+              .request({
+                method: 'DELETE',
+                url: `https://boostbrothers-bikes-api.herokuapp.com/motorcycles/${i}`,
+              })
+
+          }
+        }
+      })
+      */
+  })
 })

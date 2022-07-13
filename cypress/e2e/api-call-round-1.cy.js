@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 const fixtures = require('../fixtures/fixtures')
-let responseBodyLength;
 
 describe('Testing API expected behavior', () => {
   it('step 1 (body length)', () => {

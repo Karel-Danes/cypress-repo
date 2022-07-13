@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cy": "npx cypress run --config video=false --browser=chrome --e2e"
+    "cy": "npx cypress run --headless --config video=false --browser=chrome --e2e"
   },
   "author": "Karel Danes",
   "license": "ISC",
